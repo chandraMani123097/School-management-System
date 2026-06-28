@@ -1,0 +1,505 @@
+/* =========================
+   GOOGLE FONT
+========================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* =========================
+   ROOT VARIABLES
+========================= */
+
+:root {
+
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+
+  --secondary: #1e293b;
+
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+
+  --white: #ffffff;
+
+  --bg: #f8fafc;
+
+  --border: #e2e8f0;
+
+  --text: #334155;
+
+  --shadow:
+    0 4px 15px rgba(0, 0, 0, 0.08);
+
+  --radius: 12px;
+
+  --transition: 0.3s ease;
+}
+
+/* =========================
+   RESET
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+
+  font-family: 'Poppins', sans-serif;
+
+  background: var(--bg);
+
+  color: var(--text);
+
+  min-height: 100vh;
+
+  overflow-x: hidden;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+}
+
+input,
+select,
+textarea {
+
+  font-family: 'Poppins', sans-serif;
+  outline: none;
+}
+
+/* =========================
+   COMMON CONTAINER
+========================= */
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* =========================
+   HEADINGS
+========================= */
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--secondary);
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+p {
+  line-height: 1.6;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn {
+
+  padding: 12px 22px;
+
+  border-radius: 10px;
+
+  transition: var(--transition);
+
+  font-weight: 500;
+}
+
+.btn-primary {
+
+  background: var(--primary);
+
+  color: var(--white);
+}
+
+.btn-primary:hover {
+
+  background: var(--primary-dark);
+}
+
+.btn-success {
+
+  background: var(--success);
+
+  color: white;
+}
+
+.btn-danger {
+
+  background: var(--danger);
+
+  color: white;
+}
+
+.btn-warning {
+
+  background: var(--warning);
+
+  color: white;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+
+  background: white;
+
+  border-radius: var(--radius);
+
+  padding: 20px;
+
+  box-shadow: var(--shadow);
+
+  transition: var(--transition);
+}
+
+.card:hover {
+
+  transform: translateY(-5px);
+}
+
+/* =========================
+   SECTION HEADER
+========================= */
+
+.section-header {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 25px;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+}
+
+/* =========================
+   SEARCH BOX
+========================= */
+
+.search-container {
+
+  margin-bottom: 20px;
+}
+
+.search-container input {
+
+  width: 100%;
+
+  max-width: 350px;
+
+  padding: 12px 15px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 10px;
+
+  background: white;
+}
+
+/* =========================
+   STATUS BADGES
+========================= */
+
+.badge {
+
+  padding: 6px 12px;
+
+  border-radius: 30px;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+.badge-success {
+
+  background: #dcfce7;
+
+  color: #15803d;
+}
+
+.badge-warning {
+
+  background: #fef3c7;
+
+  color: #b45309;
+}
+
+.badge-danger {
+
+  background: #fee2e2;
+
+  color: #b91c1c;
+}
+
+/* =========================
+   PAGE CONTENT
+========================= */
+
+.main-content {
+
+  flex: 1;
+
+  padding: 25px;
+}
+
+/* =========================
+   CUSTOM SCROLLBAR
+========================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+
+  background: #cbd5e1;
+
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+
+  background: #94a3b8;
+}
+
+/* =========================
+   TABLE WRAPPER
+========================= */
+
+.table-wrapper {
+
+  overflow-x: auto;
+
+  background: white;
+
+  border-radius: 12px;
+
+  box-shadow: var(--shadow);
+
+  padding: 15px;
+}
+
+/* =========================
+   FLEX UTILITIES
+========================= */
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+}
+
+.flex-between {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+}
+
+/* =========================
+   GRID UTILITIES
+========================= */
+
+.grid {
+  display: grid;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* =========================
+   SPACING
+========================= */
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mt-30 {
+  margin-top: 30px;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast {
+
+  position: fixed;
+
+  top: 20px;
+
+  right: 20px;
+
+  background: white;
+
+  padding: 15px 20px;
+
+  border-radius: 10px;
+
+  box-shadow: var(--shadow);
+
+  z-index: 9999;
+
+  min-width: 250px;
+}
+
+/* =========================
+   MODAL BASE
+========================= */
+
+.modal {
+
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.5);
+
+  display: none;
+
+  justify-content: center;
+
+  align-items: center;
+
+  z-index: 1000;
+}
+
+.modal-content {
+
+  width: 90%;
+
+  max-width: 600px;
+
+  background: white;
+
+  border-radius: 12px;
+
+  padding: 25px;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeIn {
+
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn .4s ease;
+}
+
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  color: white;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+.toast.success {
+  background: #10b981;
+}
+
+.toast.error {
+  background: #ef4444;
+}

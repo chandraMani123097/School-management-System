@@ -1,0 +1,199 @@
+/* =========================
+   TABLE WRAPPER
+========================= */
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 15px;
+}
+
+/* =========================
+   TABLE STYLE
+========================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+/* Table Head */
+thead {
+  background: #f1f5f9;
+}
+
+thead th {
+  text-align: left;
+  padding: 12px 15px;
+  font-size: 0.85rem;
+  color: #334155;
+  font-weight: 600;
+}
+
+/* Table Body */
+tbody td {
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+/* Row Hover */
+tbody tr:hover {
+  background: #f8fafc;
+  transition: 0.2s ease;
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.action-btn {
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: 0.3s ease;
+  border: none;
+}
+
+/* View */
+.btn-view {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.btn-view:hover {
+  background: #bae6fd;
+}
+
+/* Edit */
+.btn-edit {
+  background: #fef9c3;
+  color: #a16207;
+}
+
+.btn-edit:hover {
+  background: #fde047;
+}
+
+/* Delete */
+.btn-delete {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.btn-delete:hover {
+  background: #fecaca;
+}
+
+/* =========================
+   STATUS BADGES
+========================= */
+
+.status {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+/* Active */
+.status-active {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* Inactive */
+.status-inactive {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* Pending */
+.status-pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+/* Paid */
+.status-paid {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* Unpaid */
+.status-unpaid {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* =========================
+   TABLE SEARCH BAR
+========================= */
+
+.table-search {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.table-search input {
+  width: 250px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.table-search input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.empty-state {
+  text-align: center;
+  padding: 30px;
+  color: #94a3b8;
+}
+
+.empty-state i {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+/* =========================
+   PAGINATION (FUTURE READY)
+========================= */
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.pagination button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: white;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background: var(--primary);
+  color: white;
+  border: none;
+}

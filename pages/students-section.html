@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Management - School ERP</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/forms.css" />
+    <style>
+      /* Local Page Enhancements */
+      .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+      }
+      .action-bar {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 20px;
+        background: #ffffff;
+        padding: 16px;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      .data-table-container {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+      .erp-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        font-size: 0.95rem;
+      }
+      .erp-table th {
+        background: #f8fafc;
+        color: #475569;
+        padding: 14px 20px;
+        font-weight: 600;
+        border-bottom: 1px solid #e2e8f0;
+      }
+      .erp-table td {
+        padding: 14px 20px;
+        border-bottom: 1px solid #e2e8f0;
+        color: #0f172a;
+      }
+      .status-badge.active {
+        background: #dcfce7;
+        color: #15803d;
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+      .edit-btn {
+        color: #2563eb;
+        background: none;
+        border: none;
+        cursor: pointer;
+        margin-right: 10px;
+        font-size: 1.05rem;
+      }
+      .delete-btn {
+        color: #ef4444;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.05rem;
+      }
+      .edit-btn:hover {
+        color: #1d4ed8;
+      }
+      .delete-btn:hover {
+        color: #b91c1c;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-content">
+      <div class="page-header">
+        <div>
+          <h1 style="font-size: 1.5rem; color: #0f172a; font-weight: 700">
+            Student Directory
+          </h1>
+          <p style="color: #64748b; font-size: 0.9rem">
+            Manage admission profiles, records, and registration workflows.
+          </p>
+        </div>
+        <button
+          class="btn-primary"
+          onclick="
+            document.getElementById('studentModalOverlay').classList.add('open')
+          "
+        >
+          <i class="fas fa-plus"></i> Add New Student
+        </button>
+      </div>
+
+      <div class="action-bar">
+        <div class="search-box" style="flex: 1">
+          <input
+            type="text"
+            id="tableSearchInput"
+            placeholder="Search by name, admission ID, or roll number..."
+            style="width: 100%"
+          />
+        </div>
+        <select
+          id="filterClass"
+          style="
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            background: #fff;
+            width: 150px;
+          "
+        >
+          <option value="">All Classes</option>
+          <option value="1">Class 10</option>
+          <option value="2">Class 11</option>
+          <option value="3">Class 12</option>
+        </select>
+      </div>
+
+      <div class="data-table-container">
+        <table class="erp-table">
+          <thead>
+            <tr>
+              <th>Admission No</th>
+              <th>Full Name</th>
+              <th>Class</th>
+              <th>Roll No</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="studentTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="studentModalOverlay">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3 id="modalTitle">Register New Student</h3>
+          <button class="close-modal-btn" onclick="closeStudentModal()">
+            &times;
+          </button>
+        </div>
+
+        <form id="studentForm">
+          <input type="hidden" id="studentIdField" />
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="firstName">First Name *</label>
+              <input
+                type="text"
+                id="firstName"
+                required
+                placeholder="e.g. John"
+              />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name *</label>
+              <input
+                type="text"
+                id="lastName"
+                required
+                placeholder="e.g. Doe"
+              />
+            </div>
+            <div class="form-group">
+              <label for="studentEmail">Email Address</label>
+              <input
+                type="email"
+                id="studentEmail"
+                placeholder="name@school.com"
+              />
+            </div>
+            <div class="form-group">
+              <label for="studentPhone">Contact Number</label>
+              <input
+                type="tel"
+                id="studentPhone"
+                placeholder="10-digit number"
+              />
+            </div>
+            <div class="form-group">
+              <label for="studentClass">Assigned Class *</label>
+              <select id="studentClass" required>
+                <option value="">Select Class...</option>
+                <option value="1">Class 10</option>
+                <option value="2">Class 11</option>
+                <option value="3">Class 12</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="studentRoll">Roll Number</label>
+              <input type="text" id="studentRoll" placeholder="e.g. A-12" />
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button
+              type="button"
+              class="btn-secondary"
+              onclick="closeStudentModal()"
+            >
+              Cancel
+            </button>
+            <button type="submit" class="btn-primary">Save Student</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="../js/modules/students.js"></script>
+  </body>
+</html>

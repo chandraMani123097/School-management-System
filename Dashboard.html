@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - School ERP v1.0.0</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <style>
+      /* Base Root Variables & Reset Layout overrides */
+      :root {
+        --primary: #2563eb;
+        --secondary: #1e293b;
+        --bg: #f8fafc;
+        --border: #e2e8f0;
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      body {
+        background-color: var(--bg);
+        overflow: hidden;
+      }
+      .main-workspace {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        overflow: hidden;
+      }
+      /* Iframe Panel Viewport mapping */
+      .content-frame {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <aside class="sidebar" id="appSidebar">
+        <div class="logo">
+          <i class="fas fa-graduation-cap fa-2x" style="color: #60a5fa"></i>
+          <h2>EduShield ERP</h2>
+        </div>
+        <ul>
+          <li id="menu-dash" onclick="switchView('dashboard')">
+            <i class="fas fa-th-large"></i> <span>Dashboard Overview</span>
+          </li>
+          <li
+            id="menu-students"
+            class="active"
+            onclick="switchView('students')"
+          >
+            <i class="fas fa-user-graduate"></i> <span>Students</span>
+          </li>
+          <li id="menu-teachers" onclick="switchView('teachers')">
+            <i class="fas fa-chalkboard-teacher"></i> <span>Teachers</span>
+          </li>
+          <li id="menu-attendance" onclick="switchView('attendance')">
+            <i class="fas fa-calendar-check"></i> <span>Attendance</span>
+          </li>
+          <li id="menu-fees" onclick="switchView('fees')">
+            <i class="fas fa-credit-card"></i> <span>Fee Ledger</span>
+          </li>
+          <li style="margin-top: auto; color: #f87171" onclick="handleLogOut()">
+            <i class="fas fa-sign-out-alt"></i> <span>Log Out</span>
+          </li>
+        </ul>
+      </aside>
+
+      <div class="main-workspace">
+        <header class="topbar">
+          <button class="menu-btn" onclick="toggleMobileSidebar()">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="search-box">
+            <span style="font-size: 0.9rem; color: #64748b; font-weight: 500"
+              >School Context Session: 2026-2027</span
+            >
+          </div>
+          <div class="profile">
+            <div style="text-align: right">
+              <p
+                style="font-size: 0.85rem; font-weight: 600; color: #0f172a"
+                id="userNameDisplay"
+              >
+                Admin User
+              </p>
+              <p style="font-size: 0.75rem; color: #64748b">
+                Super Administrator
+              </p>
+            </div>
+            <i class="fas fa-user-circle fa-2x" style="color: #64748b"></i>
+          </div>
+        </header>
+
+        <main style="flex: 1; overflow: hidden; padding: 0 20px 20px 20px">
+          <iframe
+            src="pages/students-section.html"
+            id="workspaceViewport"
+            class="content-frame"
+          ></iframe>
+        </main>
+      </div>
+    </div>
+
+    <script>
+      // Check Session Authorization upon startup state profiles
+      document.addEventListener("DOMContentLoaded", () => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          // If unauthorized token is absent, intercept context paths and push back to register route
+          window.location.href = "index.html";
+        }
+      });
+
+      /**
+       * Core Panel Frame Routing Logic Mechanics
+       */
+      function switchView(viewKey) {
+        const viewport = document.getElementById("workspaceViewport");
+
+        // Manage Active Class List items
+        document
+          .querySelectorAll(".sidebar ul li")
+          .forEach((item) => item.classList.remove("active"));
+
+        // Route mapping configuration profiles
+        if (viewKey === "students") {
+          viewport.src = "pages/students-section.html";
+          document.getElementById("menu-students").classList.add("active");
+        } else if (viewKey === "teachers") {
+          // Future placeholders for upcoming structural phases
+          viewport.src = "about:blank";
+          document.getElementById("menu-teachers").classList.add("active");
+        }
+
+        // Automatically snap shut mobile drawers on navigation triggers
+        document.getElementById("appSidebar").classList.remove("open");
+      }
+
+      function toggleMobileSidebar() {
+        document.getElementById("appSidebar").classList.toggle("open");
+      }
+
+      function handleLogOut() {
+        if (
+          confirm(
+            "Are you certain you wish to close your current active secure session?",
+          )
+        ) {
+          localStorage.removeItem("token");
+          window.location.href = "index.html";
+        }
+      }
+    </script>
+  </body>
+</html>
